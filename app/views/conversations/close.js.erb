@@ -1,5 +1,9 @@
 $('#conversations-list').find("[data-conversation-id='" + "<%= @conversation.id %>" + "']").parent().remove();
 
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+
 (function() {
   $(document).on('click', '.toggle-window', function(e) {
     e.preventDefault();
