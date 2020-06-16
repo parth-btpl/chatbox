@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_093231) do
     t.integer "sender_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", unique: true
-    t.index ["sender_id"], name: "index_conversations_on_sender_id", unique: true
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
