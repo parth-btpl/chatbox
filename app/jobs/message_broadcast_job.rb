@@ -1,9 +1,36 @@
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(message)
+    sender = message.user
+    recipient = message.conversation.opposed_user(sender)
+
+    broadcast_to_sender(sender, message)
+    broadcast_to_recipient(recipient, message)
   end
-  # A job is a class which performs code by using Redis server and is not connected with a Rails server.
-  # It’s completely independant. It can create or update a record, call a model’s method, or do whatever you want!
+
+  private
+
+  def broadcast_to_sender(user, message)
+    ActionCable.server.broadcast(
+      "conversations-#{user.id}",
+      message: render_message(message, user),
+      conversation_id: message.conversation_id
+    )
+  end
+
+  def broadcast_to_recipient(user, message)
+    ActionCable.server.broadcast(
+      "conversations-#{user.id}",
+      message: render_message(message, user),
+      conversation_id: message.conversation_id
+    )
+  end
+
+  def render_message(message, user)
+    ApplicationController.render(
+      partial: 'messages/message',
+      locals: { message: message, user: user }
+    )
+  end
 end
