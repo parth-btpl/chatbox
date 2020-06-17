@@ -17,3 +17,7 @@
     }
   });
 })();
+
+$(document).on('ajax:success', '.msg .destroy.btn', function(){
+  $(this).parent('.msg').remove();
+});

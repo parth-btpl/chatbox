@@ -8,6 +8,18 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @conversation = Conversation.includes(:recipient).find(params[:conversation_id])
+    @message = Message.find(params[:id])
+    @message.destroy
+
+    respond_to do |format|
+      format.json do
+        head :no_content
+      end
+    end
+  end
+
   private
 
   def message_params
