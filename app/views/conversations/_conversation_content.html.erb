@@ -1,3 +1,6 @@
 <% messages.each do |message| %>
-  <%= render message, user: user %>
+  <div class="msg">
+    <%= render message, user: user %>
+    <%= link_to 'remove', conversation_message_path(conversation_id: message.conversation.id, id: message.id), class: 'destroy btn btn-primary', method: :delete, data: { remote: true, type: 'json', confirm: 'Are you sure?' } %>
+  </div>
 <% end %>

@@ -8,6 +8,6 @@ Rails.application.routes.draw do
       post :close
     end
 
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :destroy]
   end
 end
