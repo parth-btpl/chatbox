@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   def create
     @conversation = Conversation.includes(:recipient).find_by(id: params[:conversation_id])
