@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.get(current_user.id, params[:user_id])
@@ -10,7 +12,7 @@ class ConversationsController < ApplicationController
   end
 
   def close
-    @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.find_by(id: params[:id])
 
     session[:conversations].delete(@conversation.id)
 
