@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
   end
 
   def close
-    @conversation = Conversation.find(params[:id])
+    @conversation = Conversation.find_by(id: params[:id])
 
     session[:conversations].delete(@conversation.id)
 

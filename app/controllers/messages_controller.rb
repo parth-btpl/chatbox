@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def create
-    @conversation = Conversation.includes(:recipient).find(params[:conversation_id])
+    @conversation = Conversation.includes(:recipient).find_by(id: params[:conversation_id])
     @message = @conversation.messages.create(message_params)
 
     respond_to do |format|
@@ -9,8 +9,8 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @conversation = Conversation.includes(:recipient).find(params[:conversation_id])
-    @message = Message.find(params[:id])
+    @conversation = Conversation.includes(:recipient).find_by(id: params[:conversation_id])
+    @message = Message.find_by(id: params[:id])
     @message.destroy
 
     respond_to do |format|
