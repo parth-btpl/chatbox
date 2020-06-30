@@ -1,6 +1,14 @@
 <% messages.each do |message| %>
   <div class="msg">
     <%= render message, user: user %>
+    <% if message.image.attached? %>
+      <%
+=begin%>
+ <%= image_tag message.image %> 
+<%
+=end%>
+      <%= image_tag(message.image, size: "200x200") %>
+    <% end %>  
     <%= link_to 'remove', conversation_message_path(conversation_id: message.conversation.id, id: message.id), class: 'destroy btn btn-primary', method: :delete, data: { remote: true, type: 'json', confirm: 'Are you sure?' } %>
   </div>
 <% end %>

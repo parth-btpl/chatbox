@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.2', '>= 5.2.4.3'
 gem 'puma', '~> 3.0'
 
 gem 'sass-rails', '~> 5.0'
@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'pry', '~> 0.13.1'
 gem 'redis', '~> 3.3'
 gem 'actioncable', '~> 5.0', '>= 5.0.7.2'
+gem "mini_magick"
 
 group :development do
   gem 'listen', '~> 3.0.5'

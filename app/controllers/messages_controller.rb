@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.includes(:recipient).find_by(id: params[:conversation_id])
     @message = @conversation.messages.create(message_params)
-
+    # redirect_to root_path
     respond_to do |format|
       format.js
     end
@@ -25,6 +25,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:user_id, :body)
+    params.permit(:user_id, :body, :image)
   end
 end
