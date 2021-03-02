@@ -11,29 +11,16 @@
           <%= render 'conversations/conversation_content', messages: conversation.messages, user: user %>
         </ul>
       </div>
-      <%
-=begin%>
- <form class="new_message">
-        <input name="conversation_id" type="hidden" value="<%= conversation.id %>">
-        <input name="user_id" type="hidden" value="<%= user.id %>">
-        <textarea name="body" class="form-control"></textarea>
-        <label for="myfile">Select a file:</label>
-        
-        <input type="file" id="files" name="files" multiple>
-        <input type="submit" class="btn btn-success" value="Send">
-      </form>  
-<%
-=end%>
 
-    <%= form_with(url: conversation_messages_path(conversation.id)) do |f| %>
-      <%= f.hidden_field :user_id, value: user.id %>
-      <%= f.hidden_field :conversation_id, value: conversation.id %>
-      <div class="form-group">
-        <%= f.text_field :body, class: "form-control", placeholder: "Say something!", autoFocus: true %>
-        <%= f.file_field :image %>
-      </div>
-      <%= f.submit "Send" %>
-    <% end %>
+      <%= form_with(url: conversation_messages_path(conversation.id)) do |f| %>
+        <%= f.hidden_field :user_id, value: user.id %>
+        <%= f.hidden_field :conversation_id, value: conversation.id %>
+        <div class="form-group">
+          <%= f.text_field :body, class: "form-control", placeholder: "Say something!", autoFocus: true %>
+          <%= f.file_field :image %>
+        </div>
+        <%= f.submit "Send" %>
+      <% end %>
 
     </div>
   </div>
