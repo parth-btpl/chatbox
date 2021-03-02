@@ -4,8 +4,9 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.includes(:recipient).find_by(id: params[:conversation_id])
     @message = @conversation.messages.create(message_params)
-    # redirect_to root_path
+
     respond_to do |format|
+      format.html { redirect_to root_path }
       format.js
     end
   end
